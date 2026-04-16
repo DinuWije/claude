@@ -1,6 +1,10 @@
 # Load aliases
 source "$HOME/.aliases"
 
+# PATH helpers — idempotent so re-sourcing doesn't duplicate entries
+path_prepend() { case ":$PATH:" in *":$1:"*) ;; *) PATH="$1:$PATH" ;; esac; }
+path_append()  { case ":$PATH:" in *":$1:"*) ;; *) PATH="$PATH:$1" ;; esac; }
+
 # Load homebrew shell variables
 if [ -f /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -19,11 +23,11 @@ command -v pyenv &>/dev/null && eval "$(pyenv init -)"
 command -v rbenv &>/dev/null && eval "$(rbenv init -)"
 
 # Prefer GNU binaries to Macintosh binaries.
-export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+path_prepend "/opt/homebrew/opt/coreutils/libexec/gnubin"
 
 # Go
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
+path_prepend "$GOPATH/bin"
 export GO111MODULE=auto
 export GOPRIVATE=github.com/DataDog
 export GOPROXY=binaries.ddbuild.io,https://proxy.golang.org,direct
@@ -38,7 +42,10 @@ export AWS_ASSUME_ROLE_TTL=1h
 export HELM_DRIVER=configmap
 
 # pipx
-export PATH="$PATH:$HOME/.local/bin"
+path_append "$HOME/.local/bin"
+export PATH
 
 # Machine-specific overrides (not tracked in repo)
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi

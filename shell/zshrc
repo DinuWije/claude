@@ -39,3 +39,6 @@ export HELM_DRIVER=configmap
 
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+
+# Machine-specific overrides (not tracked in repo)
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -35,4 +35,4 @@ if [ -f "$REPO_DIR/shell/aliases" ]; then
   echo "  Linked shell/aliases -> ~/.aliases"
 fi
 
-echo "Done. Restart your shell or run: source ~/.zshrc"
+echo "Done. Run: source ~/.zshrc" on first setup.

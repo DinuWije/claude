@@ -1,3 +1,6 @@
+# Datadog
+alias sshw="ssh workspace-"
+
 # Claude
 alias investigations="cd $HOME/.claude/investigations"
 alias plans="cd $HOME/.claude/plans"
@@ -18,6 +21,8 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias clr="clear"
 alias xcode="xcode-select --install"
+alias al="vi ~/.aliases"
+alias src="~/personal/claude/setup.sh && source ~/.zshrc"
 
 # npm
 alias npmu="npm uninstall"

@@ -22,7 +22,7 @@ alias p="cd ~/Projects"
 alias clr="clear"
 alias xcode="xcode-select --install"
 alias al="vi ~/.aliases"
-alias src="~/personal/claude/setup.sh && source ~/.zshrc"
+alias src='$(dirname $(dirname $(readlink -f ~/.aliases)))/setup.sh && source ~/.zshrc'
 
 # npm
 alias npmu="npm uninstall"

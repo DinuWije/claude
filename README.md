@@ -2,6 +2,21 @@
 
 Personal workstation bootstrap — Claude Code config, shell settings, and aliases.
 
+## Setup
+
+```bash
+git clone git@github.com:DinuWije/claude.git ~/claude
+```
+```bash
+~/claude/setup.sh
+```
+
+This symlinks:
+- Claude config and skills into `~/.claude/`
+- Shell config into `~/.zshrc` and `~/.aliases`
+
+Safe to re-run after pulling updates. Restart your shell after first run.
+
 ## Structure
 
 ```
@@ -22,16 +37,3 @@ Personal workstation bootstrap — Claude Code config, shell settings, and alias
     ├── zshrc                    # Shell config (homebrew, pyenv, rbenv, Go, AWS)
     └── aliases                  # Shell aliases (git, docker, npm, navigation, Claude)
 ```
-
-## Setup
-
-```bash
-git clone <repo-url> ~/claude
-~/claude/setup.sh
-```
-
-This symlinks:
-- Claude config and skills into `~/.claude/`
-- Shell config into `~/.zshrc` and `~/.aliases`
-
-Safe to re-run after pulling updates. Restart your shell after first run.

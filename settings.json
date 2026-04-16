@@ -3,5 +3,6 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "skill-finder@datadog-claude-plugins": true
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }

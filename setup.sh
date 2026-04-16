@@ -4,20 +4,18 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
 
-echo "Setting up Claude config from $REPO_DIR"
+echo "Setting up from $REPO_DIR"
 
-# Ensure ~/.claude exists
+# --- Claude Config ---
 mkdir -p "$CLAUDE_DIR/skills"
 
-# Config files
 for file in settings.json policy-limits.json CLAUDE.md mcp.json; do
   if [ -f "$REPO_DIR/$file" ]; then
     ln -sf "$REPO_DIR/$file" "$CLAUDE_DIR/$file"
-    echo "  Linked $file"
+    echo "  Linked $file -> ~/.claude/$file"
   fi
 done
 
-# Skills (link each skill directory)
 for skill in "$REPO_DIR"/skills/*/; do
   [ -d "$skill" ] || continue
   name=$(basename "$skill")
@@ -26,4 +24,15 @@ for skill in "$REPO_DIR"/skills/*/; do
   echo "  Linked skill: $name"
 done
 
-echo "Done."
+# --- Shell Config ---
+if [ -f "$REPO_DIR/shell/zshrc" ]; then
+  ln -sf "$REPO_DIR/shell/zshrc" "$HOME/.zshrc"
+  echo "  Linked shell/zshrc -> ~/.zshrc"
+fi
+
+if [ -f "$REPO_DIR/shell/aliases" ]; then
+  ln -sf "$REPO_DIR/shell/aliases" "$HOME/.aliases"
+  echo "  Linked shell/aliases -> ~/.aliases"
+fi
+
+echo "Done. Restart your shell or run: source ~/.zshrc"

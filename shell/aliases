@@ -1,0 +1,67 @@
+# Claude
+alias investigations="cd $HOME/.claude/investigations"
+alias plans="cd $HOME/.claude/plans"
+alias claude="claude --enable-auto-mode"
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# Shortcuts
+alias d="cd ~/Documents"
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias p="cd ~/Projects"
+alias clr="clear"
+alias xcode="xcode-select --install"
+
+# npm
+alias npmu="npm uninstall"
+alias npmi="npm install"
+alias rnm="rm -rf node_modules/ && npm install"
+
+# Docker
+alias dps="docker ps"
+alias dtags="docker ps -aq"
+alias dstop="docker stop"
+alias drm="docker rm"
+alias docr="docker-compose run"
+alias docu="docker-compose up"
+alias dcu="docker-compose up"
+alias dspace="docker system df"
+alias dn="docker network"
+
+# Git
+alias g="git"
+alias gb="git branch"
+alias gs="git status"
+alias gss="git stash save -u"
+alias gsl="git stash list"
+gsp(){
+  git stash pop stash@{$1}
+}
+alias gsf="git stash"
+alias gd="git diff"
+alias ga="git add"
+alias gl="git log"
+alias glog="git log"
+alias gm="git merge"
+alias gcom="git commit -m"
+alias gac="git add . && git commit -m"
+alias gch="git checkout"
+alias gps="git push"
+alias gpsu="gps -u origin head"
+alias gpsfls="git push --force-with-lease"
+alias gdh="git diff head"
+alias gr="git reset"
+alias grb="git rebase"
+alias gcomam="git commit --amend --no-edit"
+alias gcl="git clone"
+alias gpl='git pull origin $(git branch --show-current)'
+comhis() {
+  git rebase -i HEAD~$1
+}

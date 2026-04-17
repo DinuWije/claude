@@ -1,11 +1,12 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "model": "opus[1m]",
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
-    "skill-finder@datadog-claude-plugins": true
+    "skill-finder@datadog-claude-plugins": true,
+    "slack@claude-plugins-official": true
   },
-  "skipAutoPermissionPrompt": true,
-  "permissions": {
-    "defaultMode": "auto"
-  }
+  "skipAutoPermissionPrompt": true
 }

@@ -9,12 +9,18 @@ echo "Setting up from $REPO_DIR"
 # --- Claude Config ---
 mkdir -p "$CLAUDE_DIR/skills"
 
-for file in settings.json policy-limits.json CLAUDE.md mcp.json; do
+for file in settings.json policy-limits.json CLAUDE.md; do
   if [ -f "$REPO_DIR/$file" ]; then
     ln -sf "$REPO_DIR/$file" "$CLAUDE_DIR/$file"
     echo "  Linked $file -> ~/.claude/$file"
   fi
 done
+
+# MCP servers go in .mcp.json (dotfile) for Claude Code to autoload
+if [ -f "$REPO_DIR/mcp.json" ]; then
+  ln -sf "$REPO_DIR/mcp.json" "$CLAUDE_DIR/.mcp.json"
+  echo "  Linked mcp.json -> ~/.claude/.mcp.json"
+fi
 
 for skill in "$REPO_DIR"/skills/*/; do
   [ -d "$skill" ] || continue

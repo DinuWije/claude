@@ -17,6 +17,22 @@ CLAUDE_REPO=~/claude
 
 If `~/claude` does not exist, check `~/personal/claude`. If neither exists, ask the user where their claude config repo is.
 
+## Step 0: Pull Latest
+
+Before making any changes, pull the latest version of the claude config repo from remote to avoid conflicts:
+
+```bash
+cd <CLAUDE_REPO> && git pull --rebase
+```
+
+If the pull fails (e.g., uncommitted local changes), stash first:
+
+```bash
+cd <CLAUDE_REPO> && git stash && git pull --rebase && git stash pop
+```
+
+If the pull still fails (e.g., no remote configured), warn the user and proceed.
+
 ## Step 1: Gather Data
 
 Collect usage data from multiple sources. Run these in parallel where possible.

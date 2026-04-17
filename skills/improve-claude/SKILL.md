@@ -21,18 +21,21 @@ If `~/claude` does not exist, check `~/personal/claude`. If neither exists, ask 
 
 Collect usage data from multiple sources. Run these in parallel where possible.
 
-### 1a: Recent Session History
+### 1a: Current Session History
+
+<!-- Updated 2026-04-17: Only analyze the current session, not historical sessions -->
+Only analyze the **current session** JSONL file. Do NOT read other session files. The current session is the most recently modified `.jsonl` file in `~/.claude/projects/`.
 
 ```bash
-# Get the last 5 session files by modification time
-ls -t ~/.claude/projects/*//*.jsonl 2>/dev/null | head -20
+# Get the current session file (most recently modified)
+ls -t ~/.claude/projects/*/*.jsonl 2>/dev/null | head -1
 ```
 
-Read the most recent 3-5 session files. For each, extract:
+Extract from this session:
 - **Tool usage frequency** — which tools are called most, which are never used
 - **Tool denials** — tools the user had to approve or denied (permission friction)
 - **Error patterns** — recurring errors, failed commands, retried operations
-- **Repeated instructions** — things the user tells Claude multiple times across sessions
+- **User corrections** — times the user said "no", "are you sure?", interrupted, or redirected
 - **Skill invocations** — which skills are used, which are never used
 - **MCP tool usage** — which MCP tools are actually called vs configured
 

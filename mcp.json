@@ -10,10 +10,6 @@
     },
     "google-workspace": {
       "url": "https://google-workspace-mcp-server-834963730936.us-central1.run.app/mcp"
-    },
-    "lambo": {
-      "type": "http",
-      "url": "https://lambo-mcp-server.mcp.us1.prod.dog/internal/mcp"
     }
   }
 }

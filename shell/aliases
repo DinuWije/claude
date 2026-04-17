@@ -2,6 +2,9 @@
 sshw(){
   ssh workspace-$1
 }
+wcursor(){
+  workspaces connect $1 --editor cursor --repo $2
+}
 # Claude
 alias investigations="cd $HOME/.claude/investigations"
 alias plans="cd $HOME/.claude/plans"

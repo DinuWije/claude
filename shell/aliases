@@ -1,6 +1,7 @@
 # Datadog
-alias sshw="ssh workspace-"
-
+sshw(){
+  ssh workspace-$1
+}
 # Claude
 alias investigations="cd $HOME/.claude/investigations"
 alias plans="cd $HOME/.claude/plans"

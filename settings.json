@@ -4,7 +4,7 @@
   },
   "model": "opus[1m]",
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
     "skill-finder@datadog-claude-plugins": true,
     "slack@claude-plugins-official": true
   },

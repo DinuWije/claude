@@ -19,3 +19,13 @@
 
 ### Patterns Observed
 - User prefers scoped, focused work — don't expand scope beyond what's asked (e.g., reading 5 sessions when current session suffices).
+
+## 2026-04-22
+
+### Changes Made
+- **Added "check for newer patterns" guidance to CLAUDE.md**: During DAC investigation, Claude found the older EVP access control mechanism (`access_control.go` restriction filters) and recommended it. User corrected by pointing to the newer `DatasetsHelper` approach in the Java event-query service. Added instruction to look for v2/newer alternatives before recommending the first match.
+
+### Patterns Observed
+- This session was a multi-day deep investigation (17 Agent launches, 53 Greps, 52 Reads, 3 Edits). User is doing architectural scoping work — asking precise questions, building understanding incrementally, and catching mistakes. The Explore agent subtype was used heavily and effectively.
+- No MCP tools were used despite 3 servers configured. This is expected for a code investigation session — MCP tools are more relevant for operational tasks.
+- User corrects by asking questions ("Isn't there already...?", "Are you sure...?") rather than blunt negation. The existing CLAUDE.md guidance about re-examining assumptions on pushback is working — the pattern to improve is catching the wrong recommendation before the user has to ask.

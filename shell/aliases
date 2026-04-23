@@ -1,8 +1,8 @@
 # Datadog
-sshw(){
+function sshw() {
   ssh workspace-$1
 }
-wcursor(){
+function wcursor() {
   workspaces connect $1 --editor cursor --repo $2
 }
 alias dds="cd ~/dd/dd-source"
@@ -52,7 +52,7 @@ alias gb="git branch"
 alias gs="git status"
 alias gss="git stash save -u"
 alias gsl="git stash list"
-gsp(){
+function gsp() {
   git stash pop stash@{$1}
 }
 alias gsf="git stash"
@@ -73,6 +73,6 @@ alias grb="git rebase"
 alias gcomam="git commit --amend --no-edit"
 alias gcl="git clone"
 alias gpl='git pull origin $(git branch --show-current)'
-comhis() {
+function comhis() {
   git rebase -i HEAD~$1
 }

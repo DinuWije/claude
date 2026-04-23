@@ -5,6 +5,8 @@ sshw(){
 wcursor(){
   workspaces connect $1 --editor cursor --repo $2
 }
+alias dds="cd ~/dd/dd-source"
+
 # Claude
 alias investigations="cd $HOME/.claude/investigations"
 alias plans="cd $HOME/.claude/plans"

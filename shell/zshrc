@@ -48,6 +48,9 @@ export HELM_DRIVER=configmap
 path_append "$HOME/.local/bin"
 export PATH
 
+# Worktree helper
+source "$(dirname "$(readlink -f "${(%):-%x}")")/wt.sh"
+
 # Machine-specific overrides (not tracked in repo)
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local

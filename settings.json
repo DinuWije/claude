@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "defaultMode": "auto"
   },
@@ -6,7 +9,16 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": false,
     "skill-finder@datadog-claude-plugins": true,
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "warp@claude-code-warp": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    }
   },
   "skipAutoPermissionPrompt": true
 }

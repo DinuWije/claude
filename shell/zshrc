@@ -55,3 +55,6 @@ source "$(dirname "$(readlink -f "${(%):-%x}")")/wt.sh"
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
+
+# Added by Yarn Switch
+source "/Users/dinu.wijetunga/.yarn/switch/env"

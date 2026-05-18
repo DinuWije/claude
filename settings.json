@@ -20,5 +20,6 @@
       }
     }
   },
+  "theme": "dark",
   "skipAutoPermissionPrompt": true
 }

@@ -51,6 +51,9 @@ export PATH
 # Worktree helper
 source "$(dirname "$(readlink -f "${(%):-%x}")")/wt.sh"
 
+# Workspaces helper
+source "$(dirname "$(readlink -f "${(%):-%x}")")/ws.sh"
+
 # Machine-specific overrides (not tracked in repo)
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local

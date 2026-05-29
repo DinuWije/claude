@@ -5,12 +5,13 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": false,
     "skill-finder@datadog-claude-plugins": true,
+    "warp@claude-code-warp": true,
     "slack@claude-plugins-official": true,
-    "warp@claude-code-warp": true
+    "dependency-health@datadog-claude-plugins": true,
+    "pyright-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {

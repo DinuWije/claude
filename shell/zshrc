@@ -19,16 +19,21 @@ export HOMEBREW_CASK_OPTS=--require-sha
 export HOMEBREW_DIR=/opt/homebrew
 export HOMEBREW_BIN=/opt/homebrew/bin
 
-# Load python shims
-command -v pyenv &>/dev/null && eval "$(pyenv init -)"
+# Load python shims (only when a real pyenv binary is installed).
+# Guard on ${commands[pyenv]} — zsh's map of external executables — not
+# `command -v`, which would also match the wrapper function defined below
+# and re-run `pyenv init` through it (erroring) every time we re-source.
+if [[ -n "${commands[pyenv]}" ]]; then
+  eval "$(pyenv init -)"
 
-# Auto-clear stale pyenv rehash lock (left behind by interrupted pip installs)
-pyenv() {
-  if [[ "$1" == "rehash" ]] && [[ -f "$PYENV_ROOT/shims/.pyenv-shim" ]]; then
-    rm -f "$PYENV_ROOT/shims/.pyenv-shim"
-  fi
-  command pyenv "$@"
-}
+  # Auto-clear stale pyenv rehash lock (left behind by interrupted pip installs)
+  pyenv() {
+    if [[ "$1" == "rehash" ]] && [[ -f "$PYENV_ROOT/shims/.pyenv-shim" ]]; then
+      rm -f "$PYENV_ROOT/shims/.pyenv-shim"
+    fi
+    command pyenv "$@"
+  }
+fi
 
 # Load ruby shims
 command -v rbenv &>/dev/null && eval "$(rbenv init -)"
@@ -67,7 +72,14 @@ if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
 
-# Added by Yarn Switch
-source "/Users/dinu.wijetunga/.yarn/switch/env"
+# Added by Yarn Switch ($HOME so it works regardless of macOS/Linux home path)
+if [ -f "$HOME/.yarn/switch/env" ]; then
+  source "$HOME/.yarn/switch/env"
+fi
 
-eval "$(dd-gitsign load-key)"
+# Load git signing key only where dd-gitsign is installed.
+# Use an `if` (not `&&`) so a missing tool doesn't make this file — and
+# therefore `source ~/.zshrc` / the `src` alias — exit non-zero.
+if command -v dd-gitsign &>/dev/null; then
+  eval "$(dd-gitsign load-key)"
+fi

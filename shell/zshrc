@@ -22,6 +22,14 @@ export HOMEBREW_BIN=/opt/homebrew/bin
 # Load python shims
 command -v pyenv &>/dev/null && eval "$(pyenv init -)"
 
+# Auto-clear stale pyenv rehash lock (left behind by interrupted pip installs)
+pyenv() {
+  if [[ "$1" == "rehash" ]] && [[ -f "$PYENV_ROOT/shims/.pyenv-shim" ]]; then
+    rm -f "$PYENV_ROOT/shims/.pyenv-shim"
+  fi
+  command pyenv "$@"
+}
+
 # Load ruby shims
 command -v rbenv &>/dev/null && eval "$(rbenv init -)"
 
@@ -61,3 +69,5 @@ fi
 
 # Added by Yarn Switch
 source "/Users/dinu.wijetunga/.yarn/switch/env"
+
+eval "$(dd-gitsign load-key)"

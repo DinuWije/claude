@@ -80,6 +80,17 @@ else
   echo "  npm: not available, skipping graphite install"
 fi
 
+# --- SSH Config ---
+if [ -d "$REPO_DIR/ssh/workspaces" ]; then
+  mkdir -p "$HOME/.ssh/workspaces"
+  for f in "$REPO_DIR"/ssh/workspaces/*.config; do
+    [ -f "$f" ] || continue
+    name=$(basename "$f")
+    ln -sf "$f" "$HOME/.ssh/workspaces/$name"
+    echo "  Linked ssh/workspaces/$name -> ~/.ssh/workspaces/$name"
+  done
+fi
+
 # --- Shell Config ---
 if [ -f "$REPO_DIR/shell/zshrc" ]; then
   ln -sf "$REPO_DIR/shell/zshrc" "$HOME/.zshrc"

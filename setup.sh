@@ -47,20 +47,37 @@ fi
 
 if [ -n "$BREW_BIN" ]; then
   eval "$("$BREW_BIN" shellenv)"
-  BREW_PACKAGES=(
-    withgraphite/tap/graphite
-  )
-  for pkg in "${BREW_PACKAGES[@]}"; do
-    name="${pkg##*/}"
-    if brew list --formula "$name" >/dev/null 2>&1 || brew list --cask "$name" >/dev/null 2>&1; then
-      echo "  Brew: $name already installed"
-    else
-      echo "  Brew: installing $pkg"
-      brew install "$pkg"
-    fi
-  done
+
+  # Ensure node is available for npm-based installs
+  if ! command -v node >/dev/null 2>&1; then
+    echo "  Brew: installing node"
+    brew install node
+  else
+    echo "  Brew: node already installed"
+  fi
+
+  # Unlink the Homebrew graphite package if present — it ships an x86_64 binary
+  # that fails on aarch64. We install via npm instead.
+  if brew list --formula graphite >/dev/null 2>&1; then
+    brew unlink graphite 2>/dev/null || true
+    echo "  Brew: unlinked graphite (replaced by npm install)"
+  fi
 else
   echo "  Brew: not available, skipping package install"
+fi
+
+# --- npm Packages ---
+# graphite must be installed via npm; the Homebrew bottle is x86_64-only and
+# fails on aarch64 Linux with "No such file or directory: /lib64/ld-linux-x86-64.so.2"
+if command -v npm >/dev/null 2>&1; then
+  if npm list -g @withgraphite/graphite-cli >/dev/null 2>&1; then
+    echo "  npm: @withgraphite/graphite-cli already installed"
+  else
+    echo "  npm: installing @withgraphite/graphite-cli"
+    npm install -g @withgraphite/graphite-cli
+  fi
+else
+  echo "  npm: not available, skipping graphite install"
 fi
 
 # --- SSH Config ---

@@ -4,7 +4,7 @@ alias dds="cd ~/dd/dd-source"
 # Claude
 alias investigations="cd $HOME/.claude/investigations"
 alias plans="cd $HOME/.claude/plans"
-alias claude="claude --enable-auto-mode"
+alias claude="claude --enable-auto-mode --model default"
 
 # Navigation
 alias ..="cd .."

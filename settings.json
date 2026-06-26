@@ -11,13 +11,20 @@
     "warp@claude-code-warp": true,
     "slack@claude-plugins-official": true,
     "dependency-health@datadog-claude-plugins": true,
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "trajectory@trajectory": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
       "source": {
         "source": "github",
         "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "trajectory": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/dinu.wijetunga/.trajectory/claude-marketplace"
       }
     }
   },

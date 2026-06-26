@@ -81,5 +81,7 @@ fi
 # Use an `if` (not `&&`) so a missing tool doesn't make this file — and
 # therefore `source ~/.zshrc` / the `src` alias — exit non-zero.
 if command -v dd-gitsign &>/dev/null; then
-  eval "$(dd-gitsign load-key)"
 fi
+
+# Trajectory - AI coding agent observability
+export PATH="/Users/dinu.wijetunga/.trajectory/bin:$PATH"

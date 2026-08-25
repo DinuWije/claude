@@ -12,8 +12,8 @@
     "slack@claude-plugins-official": true,
     "dependency-health@datadog-claude-plugins": true,
     "pyright-lsp@claude-plugins-official": true,
-    "trajectory@trajectory": true,
-    "dd@datadog-claude-plugins": true
+    "dd@datadog-claude-plugins": true,
+    "trajectory@trajectory": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {

@@ -85,3 +85,5 @@ fi
 
 # Trajectory - AI coding agent observability
 export PATH="/Users/dinu.wijetunga/.trajectory/bin:$PATH"
+
+eval "$(/opt/dogbrew/bin/dogbrew init zsh)"

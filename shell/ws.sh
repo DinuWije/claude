@@ -120,6 +120,24 @@ _ws_connect() {
   workspaces connect "$name" --editor "$editor" --repo "$repo"
 }
 
+_ws_scp() {
+  local name="$1"
+  local src="$2"
+  local dest="${3:-/Users/dinu.wijetunga/Documents/obsidian/random}"
+
+  if [ -z "$name" ]; then
+    name="$(_ws_pick "scp")" || return 1
+  fi
+  if [ -z "$src" ]; then
+    echo "usage: ws scp <name> <remote-path> [local-dest]" >&2
+    echo "       local-dest defaults to /Users/dinu.wijetunga/Documents/obsidian/random" >&2
+    return 1
+  fi
+
+  echo "Copying workspace-$name:$src -> $dest..."
+  scp -r "workspace-$name:$src" "$dest"
+}
+
 _ws_delete() {
   local name="$1"
   if [ -z "$name" ]; then
@@ -146,6 +164,9 @@ ws — workspaces helper
 
   ws create <name> <repo>             Create a workspace in \$WS_REGION
   ws ssh [name]                       SSH to workspace-<name> (picker if no name)
+  ws scp <name> <remote-path> [dest]  Copy a file from workspace to local
+                                      (picker if no name; dest defaults to
+                                       /Users/dinu.wijetunga/Documents/obsidian/random)
   ws connect <name> <repo> [editor]   Connect workspace to an IDE
                                       (picker if no name; default editor: $WS_DEFAULT_EDITOR)
   ws delete [name]                    Delete a workspace (picker if no name)
@@ -172,6 +193,7 @@ ws() {
   case "$cmd" in
     create)         _ws_create "$@" ;;
     ssh)            _ws_ssh "$@" ;;
+    scp)            _ws_scp "$@" ;;
     connect)        _ws_connect "$@" ;;
     delete|rm)      _ws_delete "$@" ;;
     list|ls)        _ws_list ;;
